@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Bootstrapの基本テンプレート</title>
+        <!-- <link href="{{ static_url("css/index.css") }}" rel="stylesheet"> -->
+		<link href="{{ static_url("css/bootstrap.min.css") }}" rel="stylesheet">
+		<style>
+    	body {
+  	    font-size: 18px;
+	    }
+
+			li {
+				margin-bottom: 10px;
+			}
+
+			.end {
+				color: brown;
+			}
+
+			.attention {
+				color: chocolate;
+			}
+		</style>
+	</head>
+	<body>
+    <div class="container">
+        <h1>アノテーション メインページ</h1>
+				<div class="panel panel-info">
+					<div class="panel-heading">
+							注意事項(以下をよく読んで取り組んでください)
+					</div>
+					<div class="panel-body">
+						ご協力ありがとうございます。アノテーションのメインページとなります。
+						<ul>
+							<li>下のリンク集からリンクを一つずつクリックしてアノテーションを行なってください</li>
+							<li>一つアノテーションをし終えるごとにリンクの横に<span class="done">(済)</span>マークが付きます。全てにマークが出たら終了です。</li>
+							<li>不具合などで動かなくなった場合, このページにアクセスしなおしてやり直していただけると助かります。</li>							
+						</ul>
+						<h2>アノテーションカウンタ {{len([recipe_id for recipe_id in recipe_ids if recipe_id["done"]])}} / {{len(recipe_ids)}}</h2>
+					</div>
+				</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					アノテーション
+				</div>
+				<div class="panel-body">
+					<ol>
+                        {% for recipe_id in recipe_ids %}
+                       <li>
+                            <a href="ner_annotation.html?recipe_id={{recipe_id['recipe_id']}}">
+                                {{recipe_id["recipe_id"]}}
+                            </a>
+                            {% if recipe_id["done"] %}
+                                <span class="done">(済)</span>
+                            {% end %}
+                       </li>
+                        {% end %}
+					</ol>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="{{ static_url("js/bootstrap.min.js") }}"></script>
+	</body>
+</html>
