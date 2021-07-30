@@ -44,6 +44,31 @@
                         <input type="hidden" id="results" name="results" value="[]">
                         <button type="button" id="action" class="btn btn-danger">Action (Ac)</button>
                         <hr>
+                        
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    {% for i, ingredient in enumerate(ingredients) %}
+                                        <th scope="col">
+                                            {{ingredient}}
+                                        </th>
+                                    {% end %}
+                                </tr>
+                                <tbody>
+                                    {% for sentence in sentences %}
+                                    <tr>
+                                        <th>{{sentence}}</th>
+                                        {% for _ in ingredients %}
+                                            <th scope="col">
+                                                <input type="checkbox">
+                                            </th>
+                                        {% end %}
+                                    </tr>
+                                    {% end %}
+                            </thead>
+                        </table>
+                        <hr>
                         <button type="submit" id="submit" class="btn btn-success">OK</button>
                     </div>
                 </div>
@@ -51,10 +76,10 @@
             <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Ingredient prediction
+                        Video
                     </div>
                     <div class="panel-body">
-                        aa
+                        <iframe id="yc_video" width="560" height="315" src="https://www.youtube.com/embed/{{recipe_id}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
