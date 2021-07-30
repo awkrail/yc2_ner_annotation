@@ -7,7 +7,7 @@ import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        with open("./data/text_recipes.json", "r") as f:
+        with open("./simulator_annotation.json", "r") as f:
             data = json.load(f)
         recipe_ids = list(data.keys())
 
@@ -30,17 +30,18 @@ class MainHandler(tornado.web.RequestHandler):
 
 class NERAnnotationHandler(tornado.web.RequestHandler):
     def get(self, *args, **kwargs):
-        with open("./data/text_recipes.json", "r") as f:
+        with open("./simulator_annotation.json", "r") as f:
             data = json.load(f)
         params = self.request.uri
         _, recipe_id = params.split("?")
         recipe_id = recipe_id.split("=")[-1]
-        sentences = data[recipe_id]
-        self.render("ner_annotation.html", recipe_id=recipe_id, sentences=sentences)
+        sentences = data[recipe_id]["sentences"]
+        ingredients = data[recipe_id]["ingredients"]
+        self.render("ner_annotation.html", recipe_id=recipe_id, sentences=sentences, ingredients=ingredients)
 
 class SaveAnnotationHandler(tornado.web.RequestHandler):
     def post(self, *args, **kwargs):
-        with open("./data/text_recipes.json", "r") as f:
+        with open("./simulator_annotation.json", "r") as f:
             data = json.load(f)
 
         params = self.request.uri

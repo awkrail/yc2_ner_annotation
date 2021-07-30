@@ -25,26 +25,38 @@
 	<body>
     <form action="save.html?recipe_id={{recipe_id}}" method="post">
     <div clsss="container-fluid">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Recipe
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Recipe
+                    </div>
+                    <div class="panel-body">
+                        <p id="max_step">{{len(sentences)}}</p>
+                        <ol>
+                            {% for i, sentence in enumerate(sentences) %}
+                                    <li id="sentence_{{i}}">
+                                        {{sentence}}
+                                        <input id="input_{{i}}" type="hidden" name="sentence_{{i}}" value="{{sentence}}">
+                                    </li>
+                            {% end %}
+                        </ol>
+                        <input type="hidden" id="results" name="results" value="[]">
+                        <button type="button" id="action" class="btn btn-danger">Action (Ac)</button>
+                        <hr>
+                        <button type="submit" id="submit" class="btn btn-success">OK</button>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body">
-                <p id="max_step">{{len(sentences)}}</p>
-                <ol>
-                    {% for i, sentence in enumerate(sentences) %}
-                            <li id="sentence_{{i}}">
-                                {{sentence}}
-                                <input id="input_{{i}}" type="hidden" name="sentence_{{i}}" value="{{sentence}}">
-                            </li>
-                    {% end %}
-                </ol>
-                <input type="hidden" id="results" name="results" value="[]">
-                <button type="button" id="food" class="btn btn-primary">Food (F)</button>
-                <button type="button" id="tool" class="btn btn-success">Tool (T)</button>
-                <button type="button" id="action" class="btn btn-danger">Action (Ac)</button>
-                <hr>
-                <button type="submit" id="submit" class="btn btn-success">OK</button>
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Ingredient prediction
+                    </div>
+                    <div class="panel-body">
+                        aa
+                    </div>
+                </div>
             </div>
         </div>
     </div>

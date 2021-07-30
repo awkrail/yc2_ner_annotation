@@ -22,10 +22,7 @@ $(function(){
                 for(var j=0; j<annotation.length; j++) {
                     var annotation_word = $(annotation[j]).text();
                     var annotated_class = $(annotation[j]).attr("class");
-                    result["annotation"].push({
-                        "word" : annotation_word,
-                        "class" : annotated_class
-                    })
+                    result["annotation"].push(annotation_word);
                 }
                 results.push(result);
             }
