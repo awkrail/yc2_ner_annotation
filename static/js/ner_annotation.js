@@ -30,8 +30,15 @@ $(function(){
         });
     }
 
-    annotate_button($("#food"));
-    annotate_button($("#tool"));
     annotate_button($("#action"));
     submit_parse($("#submit"));
+
+    $(".jump").each(function(){
+        $(this).on('click', function(){
+            var start_time = $(this).attr("class").split("_")[1];
+            var video_url = $("#yc_video").attr("src").split("?")[0];
+            var jumped_url = video_url + "?start=" + start_time;
+            $("#yc_video").attr("src", jumped_url);
+        });
+    });
 });
